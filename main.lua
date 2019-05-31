@@ -5,7 +5,7 @@ function love.load()
   ---Table list all players
   playerList = {}
   -----------
-  ---insert table (currentX, currentY, hp, atk, hit, spd, eva)
+  ---insert table (currentX, currentY, hp, atk, hit, spd, eva) --insert player
   table.insert(playerList, createPlayer(200, 200, 30, 5, 5, 5, 5))
   table.insert(playerList, createPlayer(200, 200, 30, 5, 5, 5, 5))
   -----

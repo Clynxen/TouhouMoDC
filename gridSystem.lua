@@ -22,28 +22,12 @@ function manhattanDistance(fromX, toX, fromY, toY)
 end
 ---------
 
-
----function for creating players
-function createPlayer(playerNo, currentX, currentY, hp, atk, hit, spd, eva)
-  return { playerNo = playerNo,
-          currentX = currentX,
-          currentY = currentY,
-          hp = hp,
-          atk = atk,
-          hit = hit,
-          spd = spd,
-          eva = eva,
-          currentSelected = false}
-end
------------
-
 -----function for grid making
 function newGrid(x, y)
   return {  x = x,
             y = y }
 end
 ------------
-
 
 ---function for the grids if hovered change color
 function hoveredGrid()
@@ -98,12 +82,24 @@ function playerSelectClick()
         if love.mouse.getX() >= playerList[i].currentX and love.mouse.getX() <= playerList[i].currentX + nativeGrid
         and love.mouse.getY() >= playerList[i].currentY and love.mouse.getY() <= playerList[i].currentY + nativeGrid then
           playerList[i].currentSelected = true
+
+          --to tell what player is currently selected
+          function tellWhatSelected()
+            love.graphics.print("Moving player: "..playerList[i].playerNo, 0, 300)
+          end
+          ---------
+
         end
       end
 
     elseif button == 2 then
       for i, players in ipairs(playerList) do
           playerList[i].currentSelected = false
+
+          function tellWhatSelected()
+            return love.graphics.print("Player is not selected", 0, 300)
+          end
+
       end
     end
 
@@ -186,12 +182,3 @@ function drawGrid()
   end
 end
 ------
-
---draw function for the players
-function drawPlayer()
-  for i, player in ipairs(playerList) do
-    love.graphics.setColor(1, 0.4, 0.4)
-    love.graphics.rectangle("fill", playerList[i].currentX, playerList[i].currentY, nativeGrid, nativeGrid)
-  end
-end
----
